@@ -1,0 +1,48 @@
+name: 'spec validation'
+
+on: 
+  workflow_dispatch:
+    inputs:
+      git_url:
+        description: 'git url'
+        require: true
+        type: string
+      from_ref:
+        description: 'from ref'
+        require: true
+        type: string
+      to_ref:
+        description: 'to ref'
+        require: true
+        type: string
+      pr_number:
+        description: 'pr number'
+        require: true
+        type: string
+
+jobs:
+  validate:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: handle validation
+        run: |
+          echo "initialize, npm, spectral, git, etc."
+
+          echo "clone spec repo"
+
+          echo "clone code repo"
+
+          echo "find changed swagger files"
+
+          echo "validate swagger file with spectral"
+
+          echo "catch response from spectral"
+
+          echo "send response to code repo issue"
+
+
+
+      
+  
