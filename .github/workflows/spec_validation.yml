@@ -25,7 +25,13 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
     steps:
+      - name: show pwd
+        run: pwd
+
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
@@ -42,6 +48,11 @@ jobs:
 
       - run: gh help
 
+      - name: test env
+        run: |
+          t=${{ env.GITHUB_TOKEN }}
+          echo ${t:0:7}
+
       - name: handle validation
         run: |
           echo "clone spec repo"
@@ -55,8 +66,7 @@ jobs:
           echo "catch response from spectral"
 
           echo "send response to code repo issue"
+          response="test response"
 
 
-
-      
   
