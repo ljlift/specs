@@ -35,7 +35,7 @@ jobs:
 
       - name: initilize spectral
         run: |
-          npm install spectral --location=global
+          npm install -g @stoplight/spectral-cli
           spectral --help
 
       - run: git help
