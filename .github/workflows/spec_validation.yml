@@ -5,19 +5,19 @@ on:
     inputs:
       git_url:
         description: 'git url'
-        require: true
+        require: false
         type: string
       from_ref:
         description: 'from ref'
-        require: true
+        require: false
         type: string
       to_ref:
         description: 'to ref'
-        require: true
+        require: false
         type: string
       pr_number:
         description: 'pr number'
-        require: true
+        require: false
         type: string
 
 jobs:
@@ -30,6 +30,7 @@ jobs:
         with:
           node-version: '14'
 
+      - run: npm install -g npm
       - run: npm help
 
       - name: initilize spectral
