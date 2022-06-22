@@ -29,12 +29,20 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
+
       - run: npm help
+
+      - name: initilize spectral
+        run: |
+          npm install spectral --location=global
+          spectral --help
+
+      - run: git help
+
+      - run: gh help
 
       - name: handle validation
         run: |
-          echo "initialize, npm, spectral, git, etc."
-
           echo "clone spec repo"
 
           echo "clone code repo"
