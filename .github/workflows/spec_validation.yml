@@ -19,6 +19,18 @@ on:
         description: 'pr number'
         require: false
         type: string
+      owner:
+        description: 'owner'
+        require: false
+        type: string
+      repo:
+        description: 'repo'
+        require: false
+        type: string
+      head_sha:
+        description: 'commit hash'
+        require: false
+        type: string
 
 jobs:
   validate:
@@ -48,11 +60,6 @@ jobs:
 
       - run: gh help
 
-      - name: test env
-        run: |
-          t=${{ env.GITHUB_TOKEN }}
-          echo ${t:0:7}
-
       - name: handle validation
         run: |
           echo "clone spec repo"
@@ -67,6 +74,12 @@ jobs:
 
           echo "send response to code repo issue"
           response="test response"
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \ 
+            -H "Authorization: token ${{ env.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ inputs.owner }}/${{ inputs.repo }}/check-runs \
+            -d '{"name":"mighty_readme","status":"in_progress","output":{"title":"validate response","summary":"$response","text":"more detail."}}'
 
 
   
